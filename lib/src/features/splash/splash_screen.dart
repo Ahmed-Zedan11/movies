@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/providers/onboarding/onboarding_provider.dart';
 import 'dart:async';
 import 'package:movies_app/src/features/core/theme/app_colors.dart';
 import 'package:movies_app/src/features/core/routing/routes_manager.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,9 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, AppRoutes.login);
-    });
+    _initApp();
   }
 
   @override
@@ -52,5 +52,22 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
     );
+  }
+
+  void _initApp() async {
+    final onboardingProvider = Provider.of<OnboardingProvider>(
+      context,
+      listen: false,
+    );
+
+    await onboardingProvider.loadOnboardingStatus();
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    if (onboardingProvider.isSeen) {
+      Navigator.pushReplacementNamed(context, AppRoutes.login);
+    } else {
+      Navigator.pushReplacementNamed(context, AppRoutes.onboarding);
+    }
   }
 }
