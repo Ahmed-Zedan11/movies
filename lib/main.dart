@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/providers/onboarding/onboarding_provider.dart';
 import 'package:movies_app/src/features/core/theme/app_colors.dart';
+import 'package:movies_app/src/features/main_layout/main_layout.dart';
 import 'package:movies_app/src/features/onboarding_screen/onboarding_screen.dart';
 import 'package:provider/provider.dart';
 import 'src/features/core/routing/routes_manager.dart';
@@ -35,6 +36,7 @@ class Movies extends StatelessWidget {
             AppRoutes.splash: (_) => const SplashScreen(),
             AppRoutes.login: (_) => const LoginScreen(),
             AppRoutes.onboarding: (_) => const OnboardingScreen(),
+            AppRoutes.mainLayout: (_) => const MainLayout(),
           },
           theme: ThemeData(
             scaffoldBackgroundColor: AppColors.black1, // لون الخلفية الافتراضي
