@@ -4,10 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/src/features/core/assest_manger/assest_manger.dart';
 import 'package:movies_app/src/features/core/theme/app_colors.dart';
 
-class MoviesBasedOnCategoryItem extends StatelessWidget {
+class MoviesBasedOnSearchItem extends StatelessWidget {
   final String image;
 
-  const MoviesBasedOnCategoryItem({super.key, required this.image});
+  const MoviesBasedOnSearchItem({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,8 @@ class MoviesBasedOnCategoryItem extends StatelessWidget {
           child: Image.asset(
             image,
             fit: BoxFit.fill,
-            width: 146.w,
-            height: 220.h,
+            width: 191.w,
+            height: 279.h,
           ),
         ),
         Positioned(

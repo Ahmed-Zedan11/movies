@@ -38,9 +38,7 @@ class Movies extends StatelessWidget {
             AppRoutes.onboarding: (_) => const OnboardingScreen(),
             AppRoutes.mainLayout: (_) => const MainLayout(),
           },
-          theme: ThemeData(
-            scaffoldBackgroundColor: AppColors.black1, // لون الخلفية الافتراضي
-          ),
+          theme: ThemeData(scaffoldBackgroundColor: AppColors.black1),
         );
       },
     );
