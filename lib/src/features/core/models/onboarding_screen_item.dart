@@ -55,11 +55,14 @@ class OnboardingScreenItem extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 24.h),
-                      ClickableButton(
-                        title: "Explore Now",
-                        backgroundColor: AppColors.yellow,
-                        textColor: AppColors.black1,
-                        onPressed: onNextPressed,
+                      Padding(
+                        padding: REdgeInsets.symmetric(horizontal: 16),
+                        child: ClickableButton(
+                          title: "Explore Now",
+                          backgroundColor: AppColors.yellow,
+                          textColor: AppColors.black1,
+                          onPressed: onNextPressed,
+                        ),
                       ),
                       SizedBox(height: 20.h),
                     ],
@@ -95,11 +98,14 @@ class OnboardingScreenItem extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 24.h),
-                      ClickableButton(
-                        title: data.isLast ? "Finish" : "Next",
-                        backgroundColor: AppColors.yellow,
-                        textColor: AppColors.black1,
-                        onPressed: onNextPressed,
+                      Padding(
+                        padding: REdgeInsets.symmetric(horizontal: 16),
+                        child: ClickableButton(
+                          title: data.isLast ? "Finish" : "Next",
+                          backgroundColor: AppColors.yellow,
+                          textColor: AppColors.black1,
+                          onPressed: onNextPressed,
+                        ),
                       ),
                       SizedBox(height: 16.h),
                       data.isSecond

@@ -17,26 +17,23 @@ class ClickableButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: REdgeInsets.symmetric(horizontal: 16),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.r),
-          ),
-          backgroundColor: backgroundColor,
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.r),
         ),
-        child: Center(
-          child: Padding(
-            padding: REdgeInsets.all(16),
-            child: Text(
-              title,
-              style: GoogleFonts.inter(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w600,
-                color: textColor,
-              ),
+        backgroundColor: backgroundColor,
+      ),
+      child: Center(
+        child: Padding(
+          padding: REdgeInsets.all(16),
+          child: Text(
+            title,
+            style: GoogleFonts.inter(
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w600,
+              color: textColor,
             ),
           ),
         ),

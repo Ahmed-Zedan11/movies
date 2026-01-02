@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/providers/onboarding/onboarding_provider.dart';
+import 'package:movies_app/src/features/auth/forget_password/forget_password_screen.dart';
+import 'package:movies_app/src/features/auth/register/register_screen.dart';
 import 'package:movies_app/src/features/core/theme/app_colors.dart';
 import 'package:movies_app/src/features/main_layout/main_layout.dart';
 import 'package:movies_app/src/features/onboarding_screen/onboarding_screen.dart';
 import 'package:provider/provider.dart';
 import 'src/features/core/routing/routes_manager.dart';
 import 'src/features/splash/splash_screen.dart';
-import 'src/features/auth/screens/login_screen.dart';
+import 'src/features/auth/login/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +39,8 @@ class Movies extends StatelessWidget {
             AppRoutes.login: (_) => const LoginScreen(),
             AppRoutes.onboarding: (_) => const OnboardingScreen(),
             AppRoutes.mainLayout: (_) => const MainLayout(),
+            AppRoutes.register: (_) => const RegisterScreen(),
+            AppRoutes.forgetPassword: (_) => const ForgetPasswordScreen(),
           },
           theme: ThemeData(scaffoldBackgroundColor: AppColors.black1),
         );

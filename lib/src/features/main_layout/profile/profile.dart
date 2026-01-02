@@ -32,7 +32,7 @@ class Profile extends StatelessWidget {
                   Row(
                     children: [
                       Image.asset(
-                        AssestManger.star,
+                        AssestManger.profilePicture3,
                         width: 114.w,
                         height: 114.w,
                       ),

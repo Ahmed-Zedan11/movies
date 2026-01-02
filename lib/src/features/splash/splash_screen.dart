@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 2));
 
     if (onboardingProvider.isSeen) {
-      Navigator.pushReplacementNamed(context, AppRoutes.mainLayout);
+      Navigator.pushReplacementNamed(context, AppRoutes.login);
     } else {
       Navigator.pushReplacementNamed(context, AppRoutes.onboarding);
     }

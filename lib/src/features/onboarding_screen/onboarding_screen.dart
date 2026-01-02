@@ -29,7 +29,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       );
     } else {
       await onboardingProvider.setOnboardingSeen();
-      Navigator.pushReplacementNamed(context, AppRoutes.mainLayout);
+      Navigator.pushReplacementNamed(context, AppRoutes.login);
     }
   }
 
