@@ -1,8 +1,8 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/src/features/core/assest_manger/assest_manger.dart';
-import 'package:movies_app/src/features/core/theme/app_colors.dart';
+import 'package:movies_app/src/config/resources/assest_manger.dart';
+import 'package:movies_app/src/config/resources/app_colors.dart';
 
 class LanguageToggleSwitch extends StatelessWidget {
   const LanguageToggleSwitch({super.key});

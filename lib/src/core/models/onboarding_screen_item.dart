@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movies_app/src/features/core/theme/app_colors.dart';
-import 'package:movies_app/src/features/core/widgets/clickable_button.dart';
-import 'package:movies_app/src/features/core/models/onboarding_data.dart';
+import 'package:movies_app/src/config/resources/app_colors.dart';
+import 'package:movies_app/src/core/widgets/clickable_button.dart';
+import 'package:movies_app/src/core/models/onboarding_data.dart';
 
 class OnboardingScreenItem extends StatelessWidget {
   final OnboardingData data;

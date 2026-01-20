@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movies_app/src/features/core/assest_manger/assest_manger.dart';
-import 'package:movies_app/src/features/core/routing/routes_manager.dart';
-import 'package:movies_app/src/features/core/theme/app_colors.dart';
-import 'package:movies_app/src/features/core/widgets/clickable_button.dart';
-import 'package:movies_app/src/features/core/widgets/clickable_text.dart';
-import 'package:movies_app/src/features/core/widgets/custom_text_field.dart';
-import 'package:movies_app/src/features/core/widgets/language_toggle_switch.dart';
+import 'package:movies_app/src/config/resources/assest_manger.dart';
+import 'package:movies_app/src/core/routing/routes_manager.dart';
+import 'package:movies_app/src/config/resources/app_colors.dart';
+import 'package:movies_app/src/core/widgets/clickable_button.dart';
+import 'package:movies_app/src/core/widgets/clickable_text.dart';
+import 'package:movies_app/src/core/widgets/custom_text_field.dart';
+import 'package:movies_app/src/core/widgets/language_toggle_switch.dart';
+import 'package:movies_app/src/config/resources/validator.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -17,13 +18,26 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _isSecure = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: REdgeInsets.symmetric(horizontal: 16),
+      body: SingleChildScrollView(
+        padding: REdgeInsets.symmetric(horizontal: 16),
+        child: Form(
+          key: _formKey,
           child: Column(
             children: [
               Padding(
@@ -33,6 +47,8 @@ class _LoginScreenState extends State<LoginScreen> {
               CustomTextField(
                 labelText: "Email",
                 prefixIcon: Icons.email_rounded,
+                controller: _emailController,
+                validator: (input) => Validator.validateEmail(input),
               ),
 
               SizedBox(height: 22.h),
@@ -40,8 +56,11 @@ class _LoginScreenState extends State<LoginScreen> {
               CustomTextField(
                 labelText: "Password",
                 prefixIcon: Icons.lock,
-                suffixIcon: Icons.visibility_off,
-                obsecureText: true,
+                suffixIcon: _isSecure ? Icons.visibility_off : Icons.visibility,
+                onSuffixIconPressed: _onSuffixIconPressed,
+                obsecureText: _isSecure,
+                controller: _passwordController,
+                validator: (input) => Validator.validatePassword(input),
               ),
 
               SizedBox(height: 17.h),
@@ -150,7 +169,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _login() {
-    Navigator.pushReplacementNamed(context, AppRoutes.mainLayout);
+    if (_formKey.currentState?.validate() == false) return;
+    // Navigator.pushReplacementNamed(context, AppRoutes.mainLayout);
   }
 
   void _createOne() {
@@ -158,4 +178,16 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _loginWithGoogle() {}
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _onSuffixIconPressed() {
+    _isSecure = !_isSecure;
+    setState(() {});
+  }
 }

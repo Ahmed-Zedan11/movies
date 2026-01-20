@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movies_app/src/features/core/assest_manger/assest_manger.dart';
-import 'package:movies_app/src/features/core/theme/app_colors.dart';
+import 'package:movies_app/src/config/resources/assest_manger.dart';
+import 'package:movies_app/src/config/resources/app_colors.dart';
 
-class MoviesBasedOnSearchItem extends StatelessWidget {
+class MoviesBasedOnCategoryItem extends StatelessWidget {
   final String image;
 
-  const MoviesBasedOnSearchItem({super.key, required this.image});
+  const MoviesBasedOnCategoryItem({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,8 @@ class MoviesBasedOnSearchItem extends StatelessWidget {
           child: Image.asset(
             image,
             fit: BoxFit.fill,
-            width: 191.w,
-            height: 279.h,
+            width: 146.w,
+            height: 220.h,
           ),
         ),
         Positioned(

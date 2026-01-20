@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movies_app/src/features/core/assest_manger/assest_manger.dart';
-import 'package:movies_app/src/features/core/models/category_item.dart';
-import 'package:movies_app/src/features/core/models/category_model.dart';
-import 'package:movies_app/src/features/core/models/movies_based_on_search_item.dart';
-import 'package:movies_app/src/features/core/theme/app_colors.dart';
+import 'package:movies_app/src/config/resources/assest_manger.dart';
+import 'package:movies_app/src/core/models/category_item.dart';
+import 'package:movies_app/src/core/models/category_model.dart';
+import 'package:movies_app/src/core/models/movies_based_on_search_item.dart';
+import 'package:movies_app/src/config/resources/app_colors.dart';
 
 class Browse extends StatefulWidget {
   const Browse({super.key});

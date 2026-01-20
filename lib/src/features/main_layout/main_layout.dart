@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/src/features/core/theme/app_colors.dart';
+import 'package:movies_app/src/config/resources/app_colors.dart';
 import 'package:movies_app/src/features/main_layout/browse/browse.dart';
 import 'package:movies_app/src/features/main_layout/home/home.dart';
 import 'package:movies_app/src/features/main_layout/profile/profile.dart';

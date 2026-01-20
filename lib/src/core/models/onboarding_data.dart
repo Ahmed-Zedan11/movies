@@ -1,4 +1,4 @@
-import 'package:movies_app/src/features/core/assest_manger/assest_manger.dart';
+import 'package:movies_app/src/config/resources/assest_manger.dart';
 
 class OnboardingData {
   String imagePath;

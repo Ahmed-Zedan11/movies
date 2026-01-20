@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/providers/onboarding/onboarding_provider.dart';
-import 'package:movies_app/src/features/core/routing/routes_manager.dart';
-import 'package:movies_app/src/features/core/models/onboarding_data.dart';
-import 'package:movies_app/src/features/core/models/onboarding_screen_item.dart';
+import 'package:movies_app/src/core/routing/routes_manager.dart';
+import 'package:movies_app/src/core/models/onboarding_data.dart';
+import 'package:movies_app/src/core/models/onboarding_screen_item.dart';
 import 'package:provider/provider.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -29,7 +29,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       );
     } else {
       await onboardingProvider.setOnboardingSeen();
-      Navigator.pushReplacementNamed(context, AppRoutes.login);
+      Navigator.pushReplacementNamed(context, AppRoutes.register);
     }
   }
 

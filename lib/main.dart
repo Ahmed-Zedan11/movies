@@ -1,22 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/providers/onboarding/onboarding_provider.dart';
-import 'package:movies_app/src/features/auth/forget_password/forget_password_screen.dart';
-import 'package:movies_app/src/features/auth/register/register_screen.dart';
-import 'package:movies_app/src/features/core/theme/app_colors.dart';
+import 'package:movies_app/src/features/auth/presntation/screens/forget_password_screen.dart';
+import 'package:movies_app/src/features/auth/data/data%20source/remote/auth_api_remote_data_source.dart';
+import 'package:movies_app/src/features/auth/data/repositoriesImpl/auth_repo_impl.dart';
+import 'package:movies_app/src/features/auth/presntation/cubit/auth_cubit.dart';
+import 'package:movies_app/src/features/auth/presntation/screens/register_screen.dart';
+import 'package:movies_app/src/config/resources/app_colors.dart';
 import 'package:movies_app/src/features/main_layout/main_layout.dart';
 import 'package:movies_app/src/features/onboarding_screen/onboarding_screen.dart';
 import 'package:provider/provider.dart';
-import 'src/features/core/routing/routes_manager.dart';
+import 'src/core/routing/routes_manager.dart';
 import 'src/features/splash/splash_screen.dart';
-import 'src/features/auth/login/login_screen.dart';
+import 'src/features/auth/presntation/screens/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => OnboardingProvider())],
-      child: const Movies(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => AuthCubit(
+              authRepo: AuthRepoImpl(
+                authRemoteDataSource: AuthApiRemoteDataSource(),
+              ),
+            ),
+          ),
+        ],
+        child: const Movies(),
+      ),
     ),
   );
 }
