@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/src/features/auth/data/models/login_request.dart';
 import 'package:movies_app/src/features/auth/data/models/register_request.dart';
 import 'package:movies_app/src/features/auth/repositoray/auth_repo.dart';
 
@@ -11,6 +12,16 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthLoadingState());
       await authRepo.register(request);
+      emit(AuthSuccessState());
+    } catch (exception) {
+      emit(AuthErrorState(message: exception.toString()));
+    }
+  }
+
+  void login(LoginRequest request) async {
+    try {
+      emit(AuthLoadingState());
+      await authRepo.login(request);
       emit(AuthSuccessState());
     } catch (exception) {
       emit(AuthErrorState(message: exception.toString()));

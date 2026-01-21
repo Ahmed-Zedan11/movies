@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movies_app/src/config/resources/ui_utills.dart';
 import 'package:movies_app/src/features/auth/data/models/register_request.dart';
 import 'package:movies_app/src/features/auth/presntation/cubit/auth_cubit.dart';
 import 'package:movies_app/src/core/widgets/flutter_toaste.dart';
-import 'package:movies_app/src/features/resources/UI_utills.dart';
 import 'package:movies_app/src/config/resources/assest_manger.dart';
 import 'package:movies_app/src/core/routing/routes_manager.dart';
 import 'package:movies_app/src/config/resources/app_colors.dart';
@@ -196,7 +196,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void _createAcoount() {
     if (_formKey.currentState?.validate() == false) return;
     final selectedImage = profilePictures[_currentImageIndex];
-    context.read<AuthCubit>().register(
+    BlocProvider.of<AuthCubit>(context).register(
       RegisterRequest(
         email: _emailController.text,
         username: _nameController.text,
