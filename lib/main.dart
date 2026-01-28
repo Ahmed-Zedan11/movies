@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/providers/onboarding/onboarding_provider.dart';
-import 'package:movies_app/src/features/auth/presntation/screens/forget_password_screen.dart';
-import 'package:movies_app/src/features/auth/data/data%20source/remote/auth_api_remote_data_source.dart';
-import 'package:movies_app/src/features/auth/data/repositoriesImpl/auth_repo_impl.dart';
+import 'package:movies_app/src/core/di/di.dart';
 import 'package:movies_app/src/features/auth/presntation/cubit/auth_cubit.dart';
+import 'package:movies_app/src/features/auth/presntation/screens/forget_password_screen.dart';
 import 'package:movies_app/src/features/auth/presntation/screens/register_screen.dart';
 import 'package:movies_app/src/config/resources/app_colors.dart';
 import 'package:movies_app/src/features/main_layout/main_layout.dart';
@@ -16,20 +15,13 @@ import 'src/features/splash/splash_screen.dart';
 import 'src/features/auth/presntation/screens/login_screen.dart';
 
 void main() async {
+  configureDependencies();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => OnboardingProvider())],
       child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => AuthCubit(
-              authRepo: AuthRepoImpl(
-                authRemoteDataSource: AuthApiRemoteDataSource(),
-              ),
-            ),
-          ),
-        ],
+        providers: [BlocProvider(create: (context) => getIt<AuthCubit>())],
         child: const Movies(),
       ),
     ),

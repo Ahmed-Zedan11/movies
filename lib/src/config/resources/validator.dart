@@ -48,4 +48,27 @@ class Validator {
     }
     return null;
   }
+
+  static String? validateLoginName(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return "Please enter your name";
+    }
+    if (!RegExp(r'^emilys$').hasMatch(value)) {
+      return "Hint: Name is emilys";
+    }
+
+    return null;
+  }
+
+  static String? validateLoginPassword(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return "Please enter your Password";
+    }
+
+    if (!RegExp(r'^emilyspass$').hasMatch(value)) {
+      return "Hint: Password is emilyspass";
+    }
+
+    return null;
+  }
 }

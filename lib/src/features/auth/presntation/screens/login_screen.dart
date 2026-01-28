@@ -53,7 +53,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 labelText: "Name",
                 prefixIcon: Icons.perm_identity,
                 controller: _nameController,
-                validator: (input) => Validator.validateName(input),
+                //valiadtor is just temporary to avoid errors because of dummyJson password rules
+                validator: (input) => Validator.validateLoginName(input),
               ),
 
               SizedBox(height: 22.h),
@@ -66,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 obsecureText: _isSecure,
                 controller: _passwordController,
                 //valiadtor is just temporary to avoid errors because of dummyJson password rules
-                validator: (input) => Validator.validateName(input),
+                validator: (input) => Validator.validateLoginPassword(input),
               ),
 
               SizedBox(height: 17.h),
@@ -88,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       message: state.message,
                       color: AppColors.red,
                     );
-                  } else if (state is AuthSuccessState) {
+                  } else if (state is LoginSuccessState) {
                     UiUtills.stopLoading(context);
                     CustomFlutterToast.flutterToast(
                       message: "Loged-In Succsefully",

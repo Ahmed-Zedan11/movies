@@ -1,13 +1,15 @@
+import 'package:movies_app/src/features/auth/domain/entity/login_entity.dart';
+
 class LoginResponse {
-  final String? accessToken;
-  final String? refreshToken;
-  final int? id;
-  final String? username;
-  final String? email;
-  final String? firstName;
-  final String? lastName;
-  final String? gender;
-  final String? image;
+  final String accessToken;
+  final String refreshToken;
+  final int id;
+  final String username;
+  final String email;
+  final String firstName;
+  final String lastName;
+  final String gender;
+  final String image;
 
   const LoginResponse({
     required this.accessToken,
@@ -22,14 +24,21 @@ class LoginResponse {
   });
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
-    accessToken: json['accessToken'] as String?,
-    refreshToken: json['refreshToken'] as String?,
-    id: json['id'] as int?,
-    username: json['username'] as String?,
-    email: json['email'] as String?,
-    firstName: json['firstName'] as String?,
-    lastName: json['lastName'] as String?,
-    gender: json['gender'] as String?,
-    image: json['image'] as String?,
+    accessToken: json['accessToken'] as String,
+    refreshToken: json['refreshToken'] as String,
+    id: json['id'] as int,
+    username: json['username'] as String,
+    email: json['email'] as String,
+    firstName: json['firstName'] as String,
+    lastName: json['lastName'] as String,
+    gender: json['gender'] as String,
+    image: json['image'] as String,
+  );
+
+  LoginEntity toEntity() => LoginEntity(
+    username: username,
+    token: accessToken,
+    email: email,
+    imagePath: image,
   );
 }

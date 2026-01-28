@@ -153,7 +153,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         message: state.message,
                         color: AppColors.red,
                       );
-                    } else if (state is AuthSuccessState) {
+                    } else if (state is RegisterSuccessState) {
                       UiUtills.stopLoading(context);
                       CustomFlutterToast.flutterToast(
                         message: "Registred Succsefully",
