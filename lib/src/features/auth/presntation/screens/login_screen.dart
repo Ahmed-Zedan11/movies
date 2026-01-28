@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/src/config/resources/assest_manger.dart';
+import 'package:movies_app/src/config/resources/ui_utills.dart';
 import 'package:movies_app/src/core/routing/routes_manager.dart';
 import 'package:movies_app/src/config/resources/app_colors.dart';
 import 'package:movies_app/src/core/widgets/clickable_button.dart';
 import 'package:movies_app/src/core/widgets/clickable_text.dart';
 import 'package:movies_app/src/core/widgets/custom_text_field.dart';
+import 'package:movies_app/src/core/widgets/flutter_toaste.dart';
 import 'package:movies_app/src/core/widgets/language_toggle_switch.dart';
 import 'package:movies_app/src/config/resources/validator.dart';
+import 'package:movies_app/src/features/auth/data/models/login_request.dart';
+import 'package:movies_app/src/features/auth/presntation/cubit/auth_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -18,7 +23,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late TextEditingController _emailController;
+  late TextEditingController _nameController;
   late TextEditingController _passwordController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isSecure = true;
@@ -26,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    _emailController = TextEditingController();
+    _nameController = TextEditingController();
     _passwordController = TextEditingController();
   }
 
@@ -45,10 +50,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Image.asset(AssestManger.loginLogo),
               ),
               CustomTextField(
-                labelText: "Email",
-                prefixIcon: Icons.email_rounded,
-                controller: _emailController,
-                validator: (input) => Validator.validateEmail(input),
+                labelText: "Name",
+                prefixIcon: Icons.perm_identity,
+                controller: _nameController,
+                //valiadtor is just temporary to avoid errors because of dummyJson password rules
+                validator: (input) => Validator.validateLoginName(input),
               ),
 
               SizedBox(height: 22.h),
@@ -60,7 +66,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 onSuffixIconPressed: _onSuffixIconPressed,
                 obsecureText: _isSecure,
                 controller: _passwordController,
-                validator: (input) => Validator.validatePassword(input),
+                //valiadtor is just temporary to avoid errors because of dummyJson password rules
+                validator: (input) => Validator.validateLoginPassword(input),
               ),
 
               SizedBox(height: 17.h),
@@ -72,11 +79,34 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(height: 33.h),
-              ClickableButton(
-                title: "Login",
-                backgroundColor: AppColors.yellow,
-                textColor: AppColors.black1,
-                onPressed: _login,
+              BlocListener<AuthCubit, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthLoadingState) {
+                    UiUtills.showLoading(context);
+                  } else if (state is AuthErrorState) {
+                    UiUtills.stopLoading(context);
+                    CustomFlutterToast.flutterToast(
+                      message: state.message,
+                      color: AppColors.red,
+                    );
+                  } else if (state is LoginSuccessState) {
+                    UiUtills.stopLoading(context);
+                    CustomFlutterToast.flutterToast(
+                      message: "Loged-In Succsefully",
+                      color: AppColors.green,
+                    );
+                    Navigator.pushReplacementNamed(
+                      context,
+                      AppRoutes.mainLayout,
+                    );
+                  }
+                },
+                child: ClickableButton(
+                  title: "Login",
+                  backgroundColor: AppColors.yellow,
+                  textColor: AppColors.black1,
+                  onPressed: _login,
+                ),
               ),
               SizedBox(height: 23.h),
               Row(
@@ -170,7 +200,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _login() {
     if (_formKey.currentState?.validate() == false) return;
-    // Navigator.pushReplacementNamed(context, AppRoutes.mainLayout);
+
+    BlocProvider.of<AuthCubit>(context).login(
+      LoginRequest(
+        username: _nameController.text,
+        password: _passwordController.text,
+      ),
+    );
   }
 
   void _createOne() {
@@ -181,7 +217,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    _emailController.dispose();
+    _nameController.dispose();
     _passwordController.dispose();
     super.dispose();
   }

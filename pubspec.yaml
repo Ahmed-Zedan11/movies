@@ -36,15 +36,20 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_screenutil: ^5.9.3
   google_fonts: ^6.3.2
-  shared_preferences: ^2.5.3
+  shared_preferences: ^2.5.4
   provider: ^6.1.5+1
   carousel_slider: ^5.1.1
   animated_toggle_switch: ^0.8.5
   dio: ^5.9.0
   flutter_bloc: ^9.1.1
   fluttertoast: ^9.0.0
+  dartz: ^0.10.1
+  injectable: ^2.7.1+4
+  get_it: ^9.2.0
 
 dev_dependencies:
+  injectable_generator: ^2.7.0 
+  build_runner: ^2.4.13         
   flutter_test:
     sdk: flutter
 

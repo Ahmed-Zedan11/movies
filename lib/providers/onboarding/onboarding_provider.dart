@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/src/config/cach_constant/cach_constatnt.dart';
+import 'package:movies_app/src/config/resources/constants_manger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingProvider extends ChangeNotifier {
